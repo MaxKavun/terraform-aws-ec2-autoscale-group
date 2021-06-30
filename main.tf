@@ -139,7 +139,7 @@ locals {
 }
 
 resource "aws_autoscaling_group" "default" {
-  count = module.this.enabled ? 1 : 0
+  count = module.this.enabled && var.asg_enabled ? 1 : 0
 
   name_prefix               = format("%s%s", module.this.id, module.this.delimiter)
   vpc_zone_identifier       = var.subnet_ids
