@@ -475,7 +475,7 @@ variable "warm_pool" {
   default     = null
 }
 
-variable "asg_enabled" {
+variable "asg_enable" {
   type        = bool
   default     = false
   description = "If true create the ASG"
