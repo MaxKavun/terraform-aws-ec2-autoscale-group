@@ -1,7 +1,7 @@
 resource "aws_launch_template" "default" {
   count = module.this.enabled ? 1 : 0
 
-  name_prefix = format("%s%s", module.this.id, module.this.delimiter)
+  name = module.this.id
 
   dynamic "block_device_mappings" {
     for_each = var.block_device_mappings
