@@ -34,6 +34,7 @@ resource "aws_launch_template" "default" {
 
   disable_api_termination = var.disable_api_termination
   ebs_optimized           = var.ebs_optimized
+  update_default_version  = var.update_default_version
 
   dynamic "elastic_gpu_specifications" {
     for_each = var.elastic_gpu_specifications != null ? [var.elastic_gpu_specifications] : []
@@ -104,6 +105,7 @@ resource "aws_launch_template" "default" {
     http_endpoint               = (var.metadata_http_endpoint_enabled) ? "enabled" : "disabled"
     http_put_response_hop_limit = var.metadata_http_put_response_hop_limit
     http_tokens                 = (var.metadata_http_tokens_required) ? "required" : "optional"
+    http_protocol_ipv6          = (var.metadata_http_protocol_ipv6_enabled) ? "enabled" : "disabled"
   }
 
   dynamic "tag_specifications" {
@@ -163,6 +165,7 @@ resource "aws_autoscaling_group" "default" {
   service_linked_role_arn   = var.service_linked_role_arn
   desired_capacity          = var.desired_capacity
   max_instance_lifetime     = var.max_instance_lifetime
+  capacity_rebalance        = var.capacity_rebalance
 
   dynamic "instance_refresh" {
     for_each = (var.instance_refresh != null ? [var.instance_refresh] : [])

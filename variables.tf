@@ -57,6 +57,12 @@ variable "enable_monitoring" {
   default     = true
 }
 
+variable "update_default_version" {
+  type        = bool
+  description = "Whether to update Default version of Launch template each update"
+  default     = false
+}
+
 variable "ebs_optimized" {
   type        = bool
   description = "If true, the launched EC2 instance will be EBS-optimized"
@@ -453,6 +459,12 @@ variable "metadata_http_tokens_required" {
   description = "Set true to require IMDS session tokens, disabling Instance Metadata Service Version 1."
 }
 
+variable "metadata_http_protocol_ipv6_enabled" {
+  type        = bool
+  default     = false
+  description = "Set true to enable IPv6 in the launch template."
+}
+
 variable "tag_specifications_resource_types" {
   type        = set(string)
   default     = ["instance", "volume"]
@@ -463,6 +475,12 @@ variable "max_instance_lifetime" {
   type        = number
   default     = null
   description = "The maximum amount of time, in seconds, that an instance can be in service, values must be either equal to 0 or between 604800 and 31536000 seconds"
+}
+
+variable "capacity_rebalance" {
+  type        = bool
+  default     = false
+  description = "Indicates whether capacity rebalance is enabled. Otherwise, capacity rebalance is disabled."
 }
 
 variable "warm_pool" {
